@@ -129,7 +129,7 @@ public class Puzzle extends JFrame {
 		separator.setBounds(105, 510, 200, 5);
 		contentPane.add(separator);
 		
-		JLabel lblNumberOfMoves = new JLabel("Number of Moves:");
+		JLabel lblNumberOfMoves = new JLabel("Number of Moves: 0");
 		lblNumberOfMoves.setBounds(12, 537, 154, 27);
 		contentPane.add(lblNumberOfMoves);
 
