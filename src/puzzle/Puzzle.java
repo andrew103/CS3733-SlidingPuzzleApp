@@ -11,6 +11,7 @@ import javax.swing.JMenuItem;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.JSeparator;
+import javax.swing.JLabel;
 
 public class Puzzle extends JFrame {
 
@@ -37,7 +38,7 @@ public class Puzzle extends JFrame {
 	 */
 	public Puzzle() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 410, 580);
+		setBounds(100, 100, 410, 640);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -116,5 +117,9 @@ public class Puzzle extends JFrame {
 		separator.setBackground(Color.BLACK);
 		separator.setBounds(105, 510, 200, 5);
 		contentPane.add(separator);
+		
+		JLabel lblNumberOfMoves = new JLabel("Number of Moves:");
+		lblNumberOfMoves.setBounds(12, 537, 154, 27);
+		contentPane.add(lblNumberOfMoves);
 	}
 }
