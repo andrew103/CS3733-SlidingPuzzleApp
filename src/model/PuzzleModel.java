@@ -201,6 +201,8 @@ public class PuzzleModel {
 				this.grid[i][j] = this.defaultSetup[i][j];
 			}
 		}
+		
+		this.move_counter = 0;
 	}
 	
 	public String[][] getGrid() {

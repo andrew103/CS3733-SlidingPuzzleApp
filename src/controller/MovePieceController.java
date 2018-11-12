@@ -29,6 +29,9 @@ public class MovePieceController {
 						this.selected.setLocation(x_coord, y_coord - 100);
 						this.selected.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 						this.model.selected_piece = "none";
+						
+						this.model.move_counter++;
+						this.app.counter.setText("Number of Moves: " + this.model.move_counter);
 					}
 					break;
 				case 'a':
@@ -36,6 +39,9 @@ public class MovePieceController {
 						this.selected.setLocation(x_coord - 100, y_coord);
 						this.selected.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 						this.model.selected_piece = "none";
+						
+						this.model.move_counter++;
+						this.app.counter.setText("Number of Moves: " + this.model.move_counter);
 					}
 					break;
 				case 's':
@@ -43,6 +49,9 @@ public class MovePieceController {
 						this.selected.setLocation(x_coord, y_coord + 100);
 						this.selected.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 						this.model.selected_piece = "none";
+						
+						this.model.move_counter++;
+						this.app.counter.setText("Number of Moves: " + this.model.move_counter);
 					}
 					break;
 				case 'd':
@@ -50,6 +59,9 @@ public class MovePieceController {
 						this.selected.setLocation(x_coord + 100, y_coord);
 						this.selected.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 						this.model.selected_piece = "none";
+						
+						this.model.move_counter++;
+						this.app.counter.setText("Number of Moves: " + this.model.move_counter);
 					}
 					break;
 			}

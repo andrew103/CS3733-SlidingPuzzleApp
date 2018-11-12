@@ -34,6 +34,7 @@ public class Puzzle extends JFrame {
 	
 	PuzzleModel model;
 	public JPanel[] pieces;
+	public JLabel counter;
 
 	/**
 	 * Create the frame.
@@ -179,5 +180,6 @@ public class Puzzle extends JFrame {
 		JLabel lblNumberOfMoves = new JLabel("Number of Moves: 0");
 		lblNumberOfMoves.setBounds(12, 537, 154, 27);
 		contentPane.add(lblNumberOfMoves);
+		this.counter = lblNumberOfMoves;
 	}
 }

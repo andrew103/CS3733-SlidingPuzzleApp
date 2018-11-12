@@ -40,5 +40,7 @@ public class ResetPuzzleController {
 		this.app.pieces[8].setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		this.app.pieces[9].setLocation(305, 405);
 		this.app.pieces[9].setBorder(new LineBorder(new Color(0, 0, 0), 2));
+
+		this.app.counter.setText("Number of Moves: " + this.model.move_counter);
 	}
 }
