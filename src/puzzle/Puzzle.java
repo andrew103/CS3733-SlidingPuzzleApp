@@ -12,31 +12,33 @@ import java.awt.Color;
 import javax.swing.border.LineBorder;
 import javax.swing.JSeparator;
 import javax.swing.JLabel;
+import javax.swing.KeyStroke;
+
+import model.PuzzleModel;
+import controller.ClosePuzzleController;
+import controller.MovePieceController;
+import controller.ResetPuzzleController;
+import controller.SelectPieceController;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.InputEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Puzzle extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Puzzle frame = new Puzzle();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
+	PuzzleModel model;
 
 	/**
 	 * Create the frame.
 	 */
-	public Puzzle() {
+	public Puzzle(PuzzleModel m) {
+		this.model = m;
+		
 		setTitle("Sliding Puzzle App");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 410, 640);
@@ -45,10 +47,26 @@ public class Puzzle extends JFrame {
 		setJMenuBar(menuBar);
 		
 		JMenuItem mntmResetPuzzle = new JMenuItem("Reset Puzzle");
+		mntmResetPuzzle.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, InputEvent.CTRL_MASK));
 		menuBar.add(mntmResetPuzzle);
+		mntmResetPuzzle.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new ResetPuzzleController(Puzzle.this, model);
+			}
+		});
 		
-		JMenuItem mntmClosePuzzle = new JMenuItem("Close Puzzle");
+		JMenuItem mntmClosePuzzle = new JMenuItem("Exit Puzzle");
+		mntmClosePuzzle.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, InputEvent.CTRL_MASK));
 		menuBar.add(mntmClosePuzzle);
+		mntmClosePuzzle.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new ClosePuzzleController(Puzzle.this, model).close();
+			}
+		});
+		
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -132,7 +150,5 @@ public class Puzzle extends JFrame {
 		JLabel lblNumberOfMoves = new JLabel("Number of Moves: 0");
 		lblNumberOfMoves.setBounds(12, 537, 154, 27);
 		contentPane.add(lblNumberOfMoves);
-
-		System.out.println(contentPane.getComponentCount());
 	}
 }
