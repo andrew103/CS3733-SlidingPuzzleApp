@@ -19,8 +19,6 @@ public class MovePieceController {
 	}
 	
 	public void move(char direction) {
-		System.out.println(this.model.selected_piece);
-		
 		if (this.model.selected_piece != "none") {
 			getSelected();
 			int x_coord = this.selected.getX();

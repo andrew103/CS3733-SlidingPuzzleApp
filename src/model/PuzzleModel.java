@@ -2,7 +2,7 @@ package model;
 
 public class PuzzleModel {
 
-	String[][] defaultSetup = {
+	final String[][] defaultSetup = {
 			{"panel_2", "target", "target", "panel_3"},
 			{"panel_2", "target", "target", "panel_3"},
 			{"panel_4", "panel_1", "panel_1", "panel_5"},
@@ -11,9 +11,15 @@ public class PuzzleModel {
 	};
 	String[][] grid;
 	public String selected_piece = "none";
+	public int move_counter = 0;
 
 	public PuzzleModel() {
-		this.grid = this.defaultSetup;
+		grid = new String[5][4];
+		for (int i = 0; i < this.grid.length; i++) {
+			for (int j = 0; j< this.grid[i].length; j++) {
+				this.grid[i][j] = this.defaultSetup[i][j];
+			}
+		}
 	}
 	
 	public PuzzleModel(String[][] grid) {
@@ -74,15 +80,6 @@ public class PuzzleModel {
 
 	public boolean moveRight(int x_coord, int y_coord) {
 		if (checkHorizontal(1, x_coord, y_coord)) {
-			if (this.grid[y_coord][x_coord] == this.grid[y_coord][x_coord+1]) {
-				this.grid[y_coord][x_coord+2] = this.grid[y_coord][x_coord];
-			}
-			else {
-				this.grid[y_coord][x_coord+1] = this.grid[y_coord][x_coord];
-			}
-
-			this.grid[y_coord][x_coord] = "none";
-
 			if (y_coord < 4 && this.grid[y_coord][x_coord] == this.grid[y_coord+1][x_coord]) {
 				if (this.grid[y_coord+1][x_coord] == this.grid[y_coord+1][x_coord+1]) {
 					this.grid[y_coord+1][x_coord+2] = this.grid[y_coord+1][x_coord];
@@ -94,6 +91,14 @@ public class PuzzleModel {
 				this.grid[y_coord+1][x_coord] = "none";
 			}
 
+			if (this.grid[y_coord][x_coord] == this.grid[y_coord][x_coord+1]) {
+				this.grid[y_coord][x_coord+2] = this.grid[y_coord][x_coord];
+			}
+			else {
+				this.grid[y_coord][x_coord+1] = this.grid[y_coord][x_coord];
+			}
+
+			this.grid[y_coord][x_coord] = "none";
 			return true;
 		}
 
@@ -102,15 +107,6 @@ public class PuzzleModel {
 
 	public boolean moveLeft(int x_coord, int y_coord) {
 		if (checkHorizontal(-1, x_coord, y_coord)) {
-			if (x_coord < 3 && this.grid[y_coord][x_coord] == this.grid[y_coord][x_coord+1]) {
-				this.grid[y_coord][x_coord-1] = this.grid[y_coord][x_coord];
-				this.grid[y_coord][x_coord+1] = "none";
-			}
-			else {
-				this.grid[y_coord][x_coord-1] = this.grid[y_coord][x_coord];
-				this.grid[y_coord][x_coord] = "none";
-			}
-
 			if (y_coord < 4 && this.grid[y_coord][x_coord] == this.grid[y_coord+1][x_coord]) {
 				if (x_coord < 3 && this.grid[y_coord+1][x_coord] == this.grid[y_coord+1][x_coord+1]) {
 					this.grid[y_coord+1][x_coord-1] = this.grid[y_coord+1][x_coord];
@@ -122,6 +118,15 @@ public class PuzzleModel {
 				}
 			}
 
+			if (x_coord < 3 && this.grid[y_coord][x_coord] == this.grid[y_coord][x_coord+1]) {
+				this.grid[y_coord][x_coord-1] = this.grid[y_coord][x_coord];
+				this.grid[y_coord][x_coord+1] = "none";
+			}
+			else {
+				this.grid[y_coord][x_coord-1] = this.grid[y_coord][x_coord];
+				this.grid[y_coord][x_coord] = "none";
+			}
+
 			return true;
 		}
 
@@ -130,15 +135,6 @@ public class PuzzleModel {
 
 	public boolean moveUp(int x_coord, int y_coord) {
 		if (checkVertical(-1, x_coord, y_coord)) {
-			if (y_coord < 4 && this.grid[y_coord][x_coord] == this.grid[y_coord+1][x_coord]) {
-				this.grid[y_coord-1][x_coord] = this.grid[y_coord][x_coord];
-				this.grid[y_coord+1][x_coord] = "none";
-			}
-			else {
-				this.grid[y_coord-1][x_coord] = this.grid[y_coord][x_coord];
-				this.grid[y_coord][x_coord] = "none";
-			}
-
 			if (x_coord < 3 && this.grid[y_coord][x_coord] == this.grid[y_coord][x_coord+1]) {
 				if (y_coord < 4 && this.grid[y_coord][x_coord+1] == this.grid[y_coord+1][x_coord+1]) {
 					this.grid[y_coord-1][x_coord+1] = this.grid[y_coord][x_coord+1];
@@ -148,6 +144,15 @@ public class PuzzleModel {
 					this.grid[y_coord-1][x_coord+1] = this.grid[y_coord][x_coord+1];
 					this.grid[y_coord][x_coord+1] = "none";
 				}
+			}
+
+			if (y_coord < 4 && this.grid[y_coord][x_coord] == this.grid[y_coord+1][x_coord]) {
+				this.grid[y_coord-1][x_coord] = this.grid[y_coord][x_coord];
+				this.grid[y_coord+1][x_coord] = "none";
+			}
+			else {
+				this.grid[y_coord-1][x_coord] = this.grid[y_coord][x_coord];
+				this.grid[y_coord][x_coord] = "none";
 			}
 
 			return true;
@@ -165,15 +170,6 @@ public class PuzzleModel {
 			return true;
 		}
 		else if (checkVertical(1, x_coord, y_coord)) {
-			if (this.grid[y_coord][x_coord] == this.grid[y_coord+1][x_coord]) {
-				this.grid[y_coord+2][x_coord] = this.grid[y_coord][x_coord];
-			}
-			else {
-				this.grid[y_coord+1][x_coord] = this.grid[y_coord][x_coord];
-			}
-
-			this.grid[y_coord][x_coord] = "none";
-
 			if (x_coord < 3 && this.grid[y_coord][x_coord] == this.grid[y_coord][x_coord+1]) {
 				if (this.grid[y_coord][x_coord+1] == this.grid[y_coord+1][x_coord+1]) {
 					this.grid[y_coord+2][x_coord+1] = this.grid[y_coord][x_coord+1];
@@ -185,6 +181,14 @@ public class PuzzleModel {
 				this.grid[y_coord][x_coord+1] = "none";
 			}
 
+			if (this.grid[y_coord][x_coord] == this.grid[y_coord+1][x_coord]) {
+				this.grid[y_coord+2][x_coord] = this.grid[y_coord][x_coord];
+			}
+			else {
+				this.grid[y_coord+1][x_coord] = this.grid[y_coord][x_coord];
+			}
+
+			this.grid[y_coord][x_coord] = "none";
 			return true;
 		}
 
@@ -192,7 +196,11 @@ public class PuzzleModel {
 	}
 
 	public void resetPuzzle() {
-		this.grid = this.defaultSetup;
+		for (int i = 0; i < this.grid.length; i++) {
+			for (int j = 0; j< this.grid[i].length; j++) {
+				this.grid[i][j] = this.defaultSetup[i][j];
+			}
+		}
 	}
 	
 	public String[][] getGrid() {
