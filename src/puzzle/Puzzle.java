@@ -22,6 +22,7 @@ import controller.SelectPieceController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.MouseAdapter;
@@ -81,6 +82,11 @@ public class Puzzle extends JFrame {
 				new SelectPieceController(Puzzle.this, model).selectPiece(e.getX(), e.getY());
 			}
 		});
+		contentPane.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				new MovePieceController(Puzzle.this, model).move(e.getKeyChar());
+			}
+		});
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
@@ -89,6 +95,7 @@ public class Puzzle extends JFrame {
 		target.setBackground(Color.RED);
 		target.setBounds(105, 5, 200, 200);
 		target.setName("target");
+		contentPane.add(target);
 		pieces[0] = target;
 		
 		JPanel panel_1 = new JPanel();
@@ -96,6 +103,7 @@ public class Puzzle extends JFrame {
 		panel_1.setBackground(Color.GRAY);
 		panel_1.setBounds(105, 205, 200, 100);
 		panel_1.setName("panel_1");
+		contentPane.add(panel_1);
 		pieces[1] = panel_1;
 		
 		JPanel panel_2 = new JPanel();
@@ -103,6 +111,7 @@ public class Puzzle extends JFrame {
 		panel_2.setBackground(Color.GRAY);
 		panel_2.setBounds(5, 5, 100, 200);
 		panel_2.setName("panel_2");
+		contentPane.add(panel_2);
 		pieces[2] = panel_2;
 		
 		JPanel panel_3 = new JPanel();
@@ -110,6 +119,7 @@ public class Puzzle extends JFrame {
 		panel_3.setBackground(Color.GRAY);
 		panel_3.setBounds(305, 5, 100, 200);
 		panel_3.setName("panel_3");
+		contentPane.add(panel_3);
 		pieces[3] = panel_3;
 		
 		JPanel panel_4 = new JPanel();
@@ -117,6 +127,7 @@ public class Puzzle extends JFrame {
 		panel_4.setBackground(Color.GRAY);
 		panel_4.setBounds(5, 205, 100, 200);
 		panel_4.setName("panel_4");
+		contentPane.add(panel_4);
 		pieces[4] = panel_4;
 		
 		JPanel panel_5 = new JPanel();
@@ -124,6 +135,7 @@ public class Puzzle extends JFrame {
 		panel_5.setBackground(Color.GRAY);
 		panel_5.setBounds(305, 205, 100, 200);
 		panel_5.setName("panel_5");
+		contentPane.add(panel_5);
 		pieces[5] = panel_5;
 
 		JPanel panel_6 = new JPanel();
@@ -131,6 +143,7 @@ public class Puzzle extends JFrame {
 		panel_6.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		panel_6.setBounds(105, 305, 100, 100);
 		panel_6.setName("panel_6");
+		contentPane.add(panel_6);
 		pieces[6] = panel_6;
 
 		JPanel panel_7 = new JPanel();
@@ -138,6 +151,7 @@ public class Puzzle extends JFrame {
 		panel_7.setBackground(Color.GRAY);
 		panel_7.setBounds(205, 305, 100, 100);
 		panel_7.setName("panel_7");
+		contentPane.add(panel_7);
 		pieces[7] = panel_7;
 
 		JPanel panel_8 = new JPanel();
@@ -145,6 +159,7 @@ public class Puzzle extends JFrame {
 		panel_8.setBackground(Color.GRAY);
 		panel_8.setBounds(5, 405, 100, 100);
 		panel_8.setName("panel_8");
+		contentPane.add(panel_8);
 		pieces[8] = panel_8;
 
 		JPanel panel_9 = new JPanel();
@@ -152,14 +167,10 @@ public class Puzzle extends JFrame {
 		panel_9.setBackground(Color.GRAY);
 		panel_9.setBounds(305, 405, 100, 100);
 		panel_9.setName("panel_9");
+		contentPane.add(panel_9);
 		pieces[9] = panel_9;
 		
 		
-		for (JPanel piece:this.pieces) {
-			contentPane.add(piece);
-		}
-		
-
 		JSeparator separator = new JSeparator();
 		separator.setBackground(Color.BLACK);
 		separator.setBounds(105, 510, 200, 5);
