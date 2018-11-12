@@ -10,7 +10,7 @@ public class PuzzleModel {
 			{"panel_8", "none", "none", "panel_9"}
 	};
 	String[][] grid;
-	String selected_piece = "none";
+	public String selected_piece = "none";
 
 	public PuzzleModel() {
 		this.grid = this.defaultSetup;

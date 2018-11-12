@@ -11,4 +11,8 @@ public class ResetPuzzleController {
 		this.app = app;
 		this.model = m;
 	}
+	
+	public void reset() {
+		
+	}
 }
