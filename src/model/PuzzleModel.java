@@ -15,6 +15,10 @@ public class PuzzleModel {
 	public PuzzleModel() {
 		this.grid = this.defaultSetup;
 	}
+	
+	public PuzzleModel(String[][] grid) {
+		this.grid = grid;
+	}
 
 	private boolean checkHorizontal(int step, int x_coord, int y_coord) {
 		String object = this.grid[y_coord][x_coord];
@@ -98,7 +102,7 @@ public class PuzzleModel {
 
 	public boolean moveLeft(int x_coord, int y_coord) {
 		if (checkHorizontal(-1, x_coord, y_coord)) {
-			if (this.grid[y_coord][x_coord] == this.grid[y_coord][x_coord+1]) {
+			if (x_coord < 3 && this.grid[y_coord][x_coord] == this.grid[y_coord][x_coord+1]) {
 				this.grid[y_coord][x_coord-1] = this.grid[y_coord][x_coord];
 				this.grid[y_coord][x_coord+1] = "none";
 			}
@@ -108,7 +112,7 @@ public class PuzzleModel {
 			}
 
 			if (y_coord < 4 && this.grid[y_coord][x_coord] == this.grid[y_coord+1][x_coord]) {
-				if (this.grid[y_coord+1][x_coord] == this.grid[y_coord+1][x_coord+1]) {
+				if (x_coord < 3 && this.grid[y_coord+1][x_coord] == this.grid[y_coord+1][x_coord+1]) {
 					this.grid[y_coord+1][x_coord-1] = this.grid[y_coord+1][x_coord];
 					this.grid[y_coord+1][x_coord+1] = "none";
 				}
@@ -126,7 +130,7 @@ public class PuzzleModel {
 
 	public boolean moveUp(int x_coord, int y_coord) {
 		if (checkVertical(-1, x_coord, y_coord)) {
-			if (this.grid[y_coord][x_coord] == this.grid[y_coord+1][x_coord]) {
+			if (y_coord < 4 && this.grid[y_coord][x_coord] == this.grid[y_coord+1][x_coord]) {
 				this.grid[y_coord-1][x_coord] = this.grid[y_coord][x_coord];
 				this.grid[y_coord+1][x_coord] = "none";
 			}
@@ -136,7 +140,7 @@ public class PuzzleModel {
 			}
 
 			if (x_coord < 3 && this.grid[y_coord][x_coord] == this.grid[y_coord][x_coord+1]) {
-				if (this.grid[y_coord][x_coord+1] == this.grid[y_coord+1][x_coord+1]) {
+				if (y_coord < 4 && this.grid[y_coord][x_coord+1] == this.grid[y_coord+1][x_coord+1]) {
 					this.grid[y_coord-1][x_coord+1] = this.grid[y_coord][x_coord+1];
 					this.grid[y_coord+1][x_coord+1] = "none";
 				}
@@ -154,6 +158,10 @@ public class PuzzleModel {
 
 	public boolean moveDown(int x_coord, int y_coord) {
 		if (this.grid[y_coord][x_coord] == "target" && x_coord == 1 && y_coord == 3) {
+			this.grid[3][1] = "none";
+			this.grid[4][1] = "none";
+			this.grid[3][2] = "none";
+			this.grid[4][2] = "none";
 			return true;
 		}
 		else if (checkVertical(1, x_coord, y_coord)) {
@@ -185,5 +193,9 @@ public class PuzzleModel {
 
 	public void resetPuzzle() {
 		this.grid = this.defaultSetup;
+	}
+	
+	public String[][] getGrid() {
+		return this.grid;
 	}
 }
