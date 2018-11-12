@@ -30,7 +30,7 @@ public class SelectPieceController {
 		for (JPanel piece:this.app.pieces) {
 			int pieceX = piece.getX();
 			int pieceY = piece.getY();
-			if (pieceX <= mouseX && pieceX + piece.getWidth() >= mouseX && pieceY <= mouseY && pieceY + piece.getHeight() >= mouseY) {
+			if (pieceX <= mouseX && pieceX + piece.getWidth() > mouseX && pieceY <= mouseY && pieceY + piece.getHeight() > mouseY) {
 				piece.setBorder(new LineBorder(new Color(0, 0, 200), 2));
 				this.model.selected_piece = piece.getName();
 			}

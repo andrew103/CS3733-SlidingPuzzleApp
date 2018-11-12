@@ -21,5 +21,6 @@ public class Main {
 		});
 		
 		app.setVisible(true);
+		app.contentPane.requestFocusInWindow();
 	}
 }

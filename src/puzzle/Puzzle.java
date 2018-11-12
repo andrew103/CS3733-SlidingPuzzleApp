@@ -29,7 +29,7 @@ import java.awt.event.MouseEvent;
 
 public class Puzzle extends JFrame {
 
-	private JPanel contentPane;
+	public JPanel contentPane;
 	
 	PuzzleModel model;
 	public JPanel[] pieces;
@@ -55,6 +55,7 @@ public class Puzzle extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				new ResetPuzzleController(Puzzle.this, model).reset();
+				contentPane.requestFocusInWindow();
 			}
 		});
 		

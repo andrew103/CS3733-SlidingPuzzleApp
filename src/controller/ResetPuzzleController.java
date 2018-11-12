@@ -13,6 +13,6 @@ public class ResetPuzzleController {
 	}
 	
 	public void reset() {
-		
+
 	}
 }
