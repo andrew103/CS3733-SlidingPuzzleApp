@@ -16,6 +16,7 @@ import controller.ClosePuzzleController;
 import controller.MovePieceController;
 import controller.ResetPuzzleController;
 import controller.SelectPieceController;
+import controller.RefocusController;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -47,7 +48,7 @@ public class Puzzle extends JFrame {
 		
 		setTitle("Sliding Puzzle App");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 410, 640);
+		setBounds(100, 100, 410, 670);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -73,6 +74,15 @@ public class Puzzle extends JFrame {
 			}
 		});
 		
+		JMenuItem mntmRefocus = new JMenuItem("Refocus");
+		mntmRefocus.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.CTRL_MASK));
+		menuBar.add(mntmRefocus);
+		mntmRefocus.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new RefocusController(Puzzle.this, model).refocus();
+			}
+		});
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -180,7 +190,7 @@ public class Puzzle extends JFrame {
 		contentPane.add(separator);
 		
 		JLabel lblNumberOfMoves = new JLabel("Number of Moves: 0");
-		lblNumberOfMoves.setBounds(5, 570, 154, 21);
+		lblNumberOfMoves.setBounds(5, 540, 154, 21);
 		contentPane.add(lblNumberOfMoves);
 		this.counter = lblNumberOfMoves;
 		
@@ -199,5 +209,9 @@ public class Puzzle extends JFrame {
 		JLabel lblNewLabel_3 = new JLabel("'D': Move Right");
 		lblNewLabel_3.setBounds(295, 540, 110, 20);
 		contentPane.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Use the 'Refocus' menu option if you can't select pieces");
+		lblNewLabel_4.setBounds(12, 592, 386, 15);
+		contentPane.add(lblNewLabel_4);
 	}
 }
