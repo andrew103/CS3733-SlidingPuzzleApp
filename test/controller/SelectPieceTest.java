@@ -4,11 +4,8 @@ import junit.framework.TestCase;
 import model.PuzzleModel;
 import puzzle.Puzzle;
 
-import java.awt.Color;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-
-import javax.swing.border.LineBorder;
 
 public class SelectPieceTest extends TestCase {
 
