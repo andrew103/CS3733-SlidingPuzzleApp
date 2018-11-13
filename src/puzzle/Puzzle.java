@@ -178,8 +178,24 @@ public class Puzzle extends JFrame {
 		contentPane.add(separator);
 		
 		JLabel lblNumberOfMoves = new JLabel("Number of Moves: 0");
-		lblNumberOfMoves.setBounds(12, 537, 154, 27);
+		lblNumberOfMoves.setBounds(5, 570, 154, 21);
 		contentPane.add(lblNumberOfMoves);
 		this.counter = lblNumberOfMoves;
+		
+		JLabel lblNewLabel = new JLabel("'W': Move Up");
+		lblNewLabel.setBounds(235, 520, 110, 20);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("'A': Move Left");
+		lblNewLabel_1.setBounds(174, 540, 110, 20);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("'S': Move Down");
+		lblNewLabel_2.setBounds(230, 560, 110, 20);
+		contentPane.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("'D': Move Right");
+		lblNewLabel_3.setBounds(295, 540, 110, 20);
+		contentPane.add(lblNewLabel_3);
 	}
 }
