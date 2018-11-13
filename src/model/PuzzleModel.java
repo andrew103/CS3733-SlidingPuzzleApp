@@ -12,6 +12,7 @@ public class PuzzleModel {
 	String[][] grid;
 	public String selected_piece = "none";
 	public int move_counter = 0;
+	public boolean user_won = false;
 
 	public PuzzleModel() {
 		grid = new String[5][4];
@@ -167,6 +168,8 @@ public class PuzzleModel {
 			this.grid[4][1] = "none";
 			this.grid[3][2] = "none";
 			this.grid[4][2] = "none";
+			
+			this.user_won = true;
 			return true;
 		}
 		else if (checkVertical(1, x_coord, y_coord)) {

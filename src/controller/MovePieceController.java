@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
+import javax.swing.JOptionPane;
 
 import puzzle.Puzzle;
 import model.PuzzleModel;
@@ -46,12 +47,21 @@ public class MovePieceController {
 					break;
 				case 's':
 					if (this.model.moveDown((x_coord - 5)/100, (y_coord - 5)/100)) {
-						this.selected.setLocation(x_coord, y_coord + 100);
-						this.selected.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-						this.model.selected_piece = "none";
-						
-						this.model.move_counter++;
-						this.app.counter.setText("Number of Moves: " + this.model.move_counter);
+						if (this.model.user_won) {
+							this.app.contentPane.remove(this.app.pieces[0]);
+							this.model.move_counter++;
+							this.app.counter.setText("Number of Moves: " + this.model.move_counter);
+							
+							JOptionPane.showMessageDialog(this.app, "Congratulations! You solved the puzzle!");
+						}
+						else {
+							this.selected.setLocation(x_coord, y_coord + 100);
+							this.selected.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+							this.model.selected_piece = "none";
+							
+							this.model.move_counter++;
+							this.app.counter.setText("Number of Moves: " + this.model.move_counter);							
+						}
 					}
 					break;
 				case 'd':
