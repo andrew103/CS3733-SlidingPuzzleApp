@@ -7,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 import java.awt.Color;
-import java.awt.Point;
 
 public class SelectPieceController {
 	final Puzzle app;

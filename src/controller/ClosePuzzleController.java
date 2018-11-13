@@ -1,7 +1,5 @@
 package controller;
 
-import javax.swing.JOptionPane;
-
 import puzzle.Puzzle;
 import model.PuzzleModel;
 
