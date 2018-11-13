@@ -13,6 +13,6 @@ public class RefocusController {
 	}
 	
 	public void refocus() {
-		this.app.contentPane.requestFocus();
+		this.app.contentPane.requestFocusInWindow();
 	}
 }
